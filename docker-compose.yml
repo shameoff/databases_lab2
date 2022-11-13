@@ -1,0 +1,27 @@
+version: "3.0"
+
+services:
+  db:
+    container_name: lab2_postgres_container
+    image: postgres:latest
+    environment: 
+      - POSTGRES_PASSWORD=yalublubd
+    volumes: 
+      - "./postgres_data:/var/lib/postgresql/data"
+    ports: 
+      - "5433:5432"
+    restart: unless-stopped
+    networks: 
+      - db_net  
+  adminer:
+    container_name: lab2_adminer_container 
+    image: adminer
+    restart: always
+    ports:
+      - "18080:8080"
+    networks: 
+      - db_net
+
+networks:
+  db_net:
+
